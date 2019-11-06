@@ -6,6 +6,7 @@ class Scraper
     self.file = File.open("pokemon_index.html")
     self.parsed_file = Nokogiri::HTML.parse(file)
     self.all_pokemon = catch_em_all
+    self.all_pokemon.count
   end
 
   def catch_em_all
