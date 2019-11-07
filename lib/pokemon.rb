@@ -9,7 +9,11 @@ class Pokemon
     end
 
     def self.save(name, type, database_connection)
-        database_connection.execute("insert into pokemon (name, type) values ('#{name}', '#{type}')")
+        # database_connection.execute("insert into pokemon (name, type) values ('#{name}', '#{type}')")
+        sql = database_connection.prepare("insert into pokemon (name, type) values (?, ?)")
+        sql.bind_param 1, name
+        sql.bind_param 2, type
+        rs= sql.execute
     end
 
     def self.find(pokemon_id, database_connection)
